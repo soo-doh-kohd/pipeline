@@ -10,6 +10,9 @@ on:
       project-name:
         required: true
         type: string
+      project-type:
+        required: true
+        type: string
       node-version:
         type: string
         default: '14.x'
