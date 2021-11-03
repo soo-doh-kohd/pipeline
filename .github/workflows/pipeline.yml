@@ -3,6 +3,10 @@ name: Github Pipeline
 on:
   workflow_call:
     inputs:
+      environment:
+        required: true
+        type: string
+        default: 'dev'
       project-name:
         required: true
         type: string
@@ -28,5 +32,5 @@ jobs:
       - name: Upload Output
         uses: actions/upload-artifact@v2
         with:
-          name: Artifact for ${{ inputs.project-name }}
+          name: output-${{ inputs.environment }}
           path: dist
