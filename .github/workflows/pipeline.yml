@@ -24,4 +24,9 @@ jobs:
       - run: npm install
       - run: npm install -g @angular/cli > /dev/null
       - name: Build ${{ inputs.project-name }}
-        run: ng build
+        run: ng build --output-path=dist
+      - name: Upload Output
+        uses: actions/upload-artifact@v2
+        with:
+          name: Artifact for ${{ inputs.project-name }}
+          path: dist
