@@ -14,5 +14,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Say Hello
-        run: echo Hello ${{ inputs.username }}
+      - name: Greeting
+        run: echo Hello ${{ inputs.username }}... and welcome to the future!
