@@ -24,7 +24,7 @@ runs:
       run: dotnet restore
       shell: bash
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --output publish
       shell: bash
     - name: Publish
       run: dotnet publish
@@ -33,4 +33,4 @@ runs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ inputs.environment }}-artifact
-        path: **/publish
+        path: publish
