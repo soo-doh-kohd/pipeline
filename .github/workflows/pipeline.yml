@@ -22,6 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     name: 'Pipeline'
     steps:
-      uses: soo-doh-kohd/pipeline/.github/actions/build-angular@main
-      with:
-        inputs: ${{ inputs }}
+      - uses: soo-doh-kohd/pipeline/.github/actions/build-angular@main
+        name: 'Build Angular'
+        with:
+          inputs: ${{ inputs }}
