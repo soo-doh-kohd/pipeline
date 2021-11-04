@@ -30,11 +30,10 @@ on:
 
 jobs:
   build:
-#     if: ${{ inputs.doBuild }}
+    if: ${{ inputs.doBuild }}
 
     runs-on: ubuntu-latest
 
-    if: ${{ inputs.doBuild && inputs.project-type == 'Angular' }}
     steps:
       - if: ${{ inputs.doBuild && inputs.project-type == 'Angular' }}
       - name: 'Build Angular'
