@@ -18,7 +18,10 @@ on:
         default: '14.x'
 
 jobs:
-  build-angular:
-    uses: soo-doh-kohd/pipeline/.github/workflows/build-angular.yml@main
-    with:
-      inputs: ${{ inputs }}
+  pipeline:
+    runs-on: ubuntu-latest
+    name: 'Pipeline'
+    steps:
+      - uses: actions/build-angularl@main
+        with:
+          inputs: ${{ inputs }}
