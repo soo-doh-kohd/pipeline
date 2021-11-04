@@ -30,5 +30,5 @@ runs:
     - name: Upload Artifact (Output)
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ inputs.environment }}-artifact
+        name: ${{ inputs.environment }}-angular-artifact
         path: dist
