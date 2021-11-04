@@ -25,4 +25,7 @@ jobs:
       - uses: soo-doh-kohd/pipeline/.github/actions/build-angular@main
         name: 'Build Angular'
         with:
-          inputs: ${{ inputs }}
+          environment: ${{ inputs.environment }}
+          project-name: ${{ inputs.project-name }}
+          project-type: ${{ inputs.project-type }}
+          node-version: ${{ inputs.node-version }}
