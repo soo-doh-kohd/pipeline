@@ -1,0 +1,36 @@
+name: '.NET Core Build'
+description: 'Builds a .NET Core App'
+inputs:
+  environment:
+    required: true
+    type: string
+    default: 'dev'
+  project-name:
+    required: true
+    type: string
+  dotnet-version:
+    type: string
+    default: '5.0.x'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ inputs.dotnet-version }}
+    - name: Restore dependencies
+      run: dotnet restore
+      shell: bash
+    - name: Build
+      run: dotnet build --no-restore
+      shell: bash
+    - name: Publish
+      run: dotnet publish
+      shell: bash
+    - name: Upload Artifact (Output)
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ inputs.environment }}-artifact
+        path: **/publish
