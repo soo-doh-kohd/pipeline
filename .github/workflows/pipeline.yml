@@ -20,9 +20,8 @@ on:
 jobs:
   pipeline:
     runs-on: ubuntu-latest
-    name: 'Pipeline'
     steps:
       - uses: actions/checkout@v1
-      - uses: ./.github/actions/build-angular@main
+      - uses: soo-doh-kohd/pipeline/.github/actions/build-angular@main
         with:
           inputs: ${{ inputs }}
