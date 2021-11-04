@@ -30,22 +30,23 @@ on:
 
 jobs:
   build:
+    if: ${{ inputs.doBuild }}
     runs-on: ubuntu-latest
     
     steps:
-      - name: 'Build Angular'
-        if: ${{ inputs.doBuild && inputs.project-type == 'Angular' }}
-        uses: soo-doh-kohd/pipeline/.github/actions/build-angular@main
+      - name: 'Build ${{ inputs.project-type }}'
+#         if: ${{ inputs.doBuild && inputs.project-type == 'Angular' }}
+        uses: soo-doh-kohd/pipeline/.github/actions/build-${{ inputs.project-type }}@main
         with:
           environment: ${{ inputs.environment }}
           project-name: ${{ inputs.project-name }}
           node-version: ${{ inputs.node-version }}
 
-      - name: 'Build .NET Core'
-        if: ${{ inputs.doBuild && inputs.project-type == '.NET Core' }}
-        uses: soo-doh-kohd/pipeline/.github/actions/build-dotnet-core@main
-        with:
-          environment: ${{ inputs.environment }}
-          project-name: ${{ inputs.project-name }}
-          dotnet-version: ${{ inputs.dotnet-version }}
+#       - name: 'Build .NET Core'
+#         if: ${{ inputs.doBuild && inputs.project-type == '.NET Core' }}
+#         uses: soo-doh-kohd/pipeline/.github/actions/build-dotnet-core@main
+#         with:
+#           environment: ${{ inputs.environment }}
+#           project-name: ${{ inputs.project-name }}
+#           dotnet-version: ${{ inputs.dotnet-version }}
 
