@@ -24,9 +24,12 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
     - run: npm install
+      shell: bash
     - run: npm install -g @angular/cli > /dev/null
+      shell: bash
     - name: Build ${{ inputs.project-name }}
       run: ng build --output-path=dist
+      shell: bash
     - name: Upload Artifact (Output)
       uses: actions/upload-artifact@v2
       with:
