@@ -1,0 +1,33 @@
+name: Github Pipeline
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+        default: 'dev'
+      project-name:
+        required: true
+        type: string
+        
+      doBuild:
+        type: boolean
+        default: true
+        
+      node-version:
+        type: string
+        default: '14.x'
+
+jobs:
+  build:
+    if: ${{ inputs.doBuild }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 'Build Angular'
+        uses: soo-doh-kohd/pipeline/.github/actions/build-angular@main
+        with:
+          environment: ${{ inputs.environment }}
+          project-name: ${{ inputs.project-name }}
+          node-version: ${{ inputs.node-version }}
