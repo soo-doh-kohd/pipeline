@@ -22,7 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     name: 'Pipeline'
     steps:
-      - uses: soo-doh-kohd/pipeline/.github/actions/build-angular@main
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/build-angular@main
         name: 'Build Angular'
         with:
           environment: ${{ inputs.environment }}
