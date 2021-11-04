@@ -1,0 +1,33 @@
+name: .NET Core Pipeline
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+        default: 'dev'
+      project-name:
+        required: true
+        type: string
+        
+      doBuild:
+        type: boolean
+        default: true
+        
+      dotnet-version:
+        type: string
+        default: '5.0.x'
+
+jobs:
+  build:
+    if: ${{ inputs.doBuild }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 'Build .NET Core'
+        uses: soo-doh-kohd/pipeline/.github/actions/build-dotnet-core@main
+        with:
+          environment: ${{ inputs.environment }}
+          project-name: ${{ inputs.project-name }}
+          dotnet-version: ${{ inputs.dotnet-version }}
