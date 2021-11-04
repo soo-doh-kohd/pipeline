@@ -23,6 +23,8 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: main
       - name: 'Build Angular'
         uses: ./.github/actions/build-angular
         with:
