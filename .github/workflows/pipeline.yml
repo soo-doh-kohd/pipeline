@@ -35,18 +35,29 @@ jobs:
     
     steps:
       - name: 'Build ${{ inputs.project-type }}'
-#         if: ${{ inputs.doBuild && inputs.project-type == 'Angular' }}
-        uses: ${{ format('soo-doh-kohd/pipeline/.github/actions/build-{0}@main', 'angular') }}
+        if: ${{ inputs.project-type == 'Angular' }}
+        uses: soo-doh-kohd/pipeline/.github/actions/build-angular@main
         with:
           environment: ${{ inputs.environment }}
           project-name: ${{ inputs.project-name }}
           node-version: ${{ inputs.node-version }}
 
-#       - name: 'Build .NET Core'
-#         if: ${{ inputs.doBuild && inputs.project-type == '.NET Core' }}
-#         uses: soo-doh-kohd/pipeline/.github/actions/build-dotnet-core@main
-#         with:
-#           environment: ${{ inputs.environment }}
-#           project-name: ${{ inputs.project-name }}
-#           dotnet-version: ${{ inputs.dotnet-version }}
+      - name: 'Build .NET Core'
+        if: ${{ inputs.project-type == '.NET Core' }}
+        uses: soo-doh-kohd/pipeline/.github/actions/build-dotnet-core@main
+        with:
+          environment: ${{ inputs.environment }}
+          project-name: ${{ inputs.project-name }}
+          dotnet-version: ${{ inputs.dotnet-version }}
 
+  build-dotnet-core:
+    if: ${{ inputs.doBuild && inputs.project-type == '.NET Core' }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 'Build .NET Core'
+        uses: soo-doh-kohd/pipeline/.github/actions/build-dotnet-core@main
+        with:
+          environment: ${{ inputs.environment }}
+          project-name: ${{ inputs.project-name }}
+          dotnet-version: ${{ inputs.dotnet-version }}
