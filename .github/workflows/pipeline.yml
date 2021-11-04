@@ -23,6 +23,6 @@ jobs:
     name: 'Pipeline'
     steps:
       - uses: actions/checkout@v1
-      - uses: soo-doh-kohd/pipeline/.github/actions/build-angular@main
+      - uses: ./.github/actions/build-angular@main
         with:
           inputs: ${{ inputs }}
