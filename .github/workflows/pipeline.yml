@@ -22,11 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v2
+#       - uses: actions/checkout@v2 # does not checkout repo with reusable workflows
       - name: 'Build Angular'
-        uses: ./pipeline/.github/actions/build-angular
+        uses: soo-doh-kohd/pipeline/.github/actions/build-angular@main
         with:
           environment: ${{ inputs.environment }}
           project-name: ${{ inputs.project-name }}
-          project-type: ${{ inputs.project-type }}
           node-version: ${{ inputs.node-version }}
+        if: ${{ inputs.project-type == 'Angular' }}
