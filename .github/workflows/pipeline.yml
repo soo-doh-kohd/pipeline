@@ -20,11 +20,11 @@ on:
 jobs:
   pipeline:
     runs-on: ubuntu-latest
-    name: 'Pipeline'
+    
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/build-angular@main
-        name: 'Build Angular'
+      - name: 'Build Angular'
+        uses: ./.github/actions/build-angular
         with:
           environment: ${{ inputs.environment }}
           project-name: ${{ inputs.project-name }}
