@@ -22,6 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     name: 'Pipeline'
     steps:
-      - uses: actions/build-angular@main
+      - uses: ./.github/actions/build-angular@main
         with:
           inputs: ${{ inputs }}
