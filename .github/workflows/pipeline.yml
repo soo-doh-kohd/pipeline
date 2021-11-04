@@ -13,12 +13,23 @@ on:
       project-type:
         required: true
         type: string
+        
+      doBuild:
+        type: boolean
+        default: true
+        
+      # .NET-based apps
+      dotnet-version:
+        type: string
+        default: '5.0.x'
+        
+      # Node-based apps
       node-version:
         type: string
         default: '14.x'
 
 jobs:
-  pipeline:
+  build:
     runs-on: ubuntu-latest
     
     steps:
@@ -30,3 +41,13 @@ jobs:
           project-name: ${{ inputs.project-name }}
           node-version: ${{ inputs.node-version }}
         if: ${{ inputs.project-type == 'Angular' }}
+
+      - name: 'Build .NET Core'
+        uses: soo-doh-kohd/pipeline/.github/actions/build-dotnet-core@main
+        with:
+          environment: ${{ inputs.environment }}
+          project-name: ${{ inputs.project-name }}
+          dotnet-version: ${{ inputs.dotnet-version }}
+        if: ${{ inputs.project-type == '.NET Core' }}
+    
+    if: ${{ inputs.doBuild }}
