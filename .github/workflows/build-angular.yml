@@ -1,7 +1,9 @@
 name: Angular Build
 
 on:
-  workflow_call:
+  issues:
+    types:
+      - opened
     inputs:
       environment:
         required: true
