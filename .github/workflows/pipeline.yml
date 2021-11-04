@@ -18,21 +18,7 @@ on:
         default: '14.x'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ inputs.node-version }}
-      - run: npm install
-      - run: npm install -g @angular/cli > /dev/null
-      - name: Build ${{ inputs.project-name }}
-        run: ng build --output-path=dist
-      - name: Upload Artifact (Output)
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ inputs.environment }}-artifact
-          path: dist
+  build-angular:
+    uses: soo-doh-kohd/pipeline/.github/workflows/build/angular.yml@main
+    with:
+      inputs: ${{ inputs }}
