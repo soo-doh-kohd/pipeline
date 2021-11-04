@@ -36,7 +36,7 @@ jobs:
     steps:
       - name: 'Build ${{ inputs.project-type }}'
 #         if: ${{ inputs.doBuild && inputs.project-type == 'Angular' }}
-        uses: ${{ format('soo-doh-kohd/pipeline/.github/actions/build-{0}@main', inputs.project-type) }}
+        uses: ${{ format('soo-doh-kohd/pipeline/.github/actions/build-{0}@main', 'angular') }}
         with:
           environment: ${{ inputs.environment }}
           project-name: ${{ inputs.project-name }}
