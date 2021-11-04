@@ -29,22 +29,26 @@ on:
         default: '14.x'
 
 jobs:
-  build:
-    if: ${{ inputs.doBuild }}
-
+  build-angular:
+    if: ${{ inputs.doBuild && inputs.project-type == 'Angular' }}
+    
     runs-on: ubuntu-latest
 
     steps:
-      - if: ${{ inputs.project-type == 'Angular' }}
-        name: 'Build Angular'
+      - name: 'Build Angular'
         uses: soo-doh-kohd/pipeline/.github/actions/build-angular@main
         with:
           environment: ${{ inputs.environment }}
           project-name: ${{ inputs.project-name }}
           node-version: ${{ inputs.node-version }}
           
-      - if: ${{ inputs.project-type == '.NET Core' }}
-        name: 'Build .NET Core'
+  build-dotnet-core:
+    if: ${{ inputs.doBuild && inputs.project-type == '.NET Core' }}
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Build .NET Core'
         uses: soo-doh-kohd/pipeline/.github/actions/build-dotnet-core@main
         with:
           environment: ${{ inputs.environment }}
